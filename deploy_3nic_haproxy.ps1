@@ -6,12 +6,12 @@
 $HAProxyOVA = "/Volumes/Storage/Software/vmware-haproxy-v0.1.8.ova"
 
 $Cluster = "Tanzu-Cluster"
-$VMHost = "esxi-01.tanzu.local"
+$VMHost = "Z840.homelab.local"
 $Datastore = "local-vmfs"
 
-$HAProxyDisplayName = "haproxy.tanzu.local"
-$HAProxyHostname = "haproxy.tanzu.local"
-$HAProxyDNS = "192.168.30.2"
+$HAProxyDisplayName = "haproxy.homelab.local"
+$HAProxyHostname = "haproxy.homelab.local"
+$HAProxyDNS = "10.0.1.3"
 $HAProxyManagementNetwork = "Management"
 $HAProxyManagementIPAddress = "192.168.30.6/24" # Format is IP Address/CIDR Prefix
 $HAProxyManagementGateway = "192.168.30.1"
