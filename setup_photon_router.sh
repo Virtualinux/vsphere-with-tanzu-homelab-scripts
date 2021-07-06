@@ -3,7 +3,14 @@
 PHOTON_ROUTER_IP=10.0.1.110
 PHOTON_ROUTER_GW=10.0.1.254
 PHOTON_ROUTER_DNS=10.0.1.3
+
+# GKB - If installing DNS, update the Network IDs in the access-control block below
 SETUP_DNS_SERVER=0
+
+# GKB - extra vars
+PHOTON_ROUTER_FE_IP=10.0.10.254
+PHOTON_ROUTER_WKLD_IP=10.0.20.254
+
 
 tdnf -y update
 if [ ${SETUP_DNS_SERVER} -eq 1 ]; then
@@ -15,9 +22,9 @@ if [ ${SETUP_DNS_SERVER} -eq 1 ]; then
         port: 53
         do-ip4: yes
         do-udp: yes
-        access-control: 192.168.30.0/24 allow
-        access-control: 10.10.0.0/24 allow
-        access-control: 10.20.0.0/24 allow
+        access-control: 10.0.1.0/24 allow
+        access-control: 10.0.10.0/24 allow
+        access-control: 10.0.20.0/24 allow
         verbosity: 1
 
     local-zone: "tanzu.local." static
@@ -63,7 +70,7 @@ cat > /etc/systemd/network/11-static-eth1.network << EOF
 Name=eth1
 
 [Network]
-Address=10.10.0.1/24
+Address=${PHOTON_ROUTER_FE_IP}/24
 EOF
 
 cat > /etc/systemd/network/12-static-eth2.network << EOF
@@ -71,7 +78,7 @@ cat > /etc/systemd/network/12-static-eth2.network << EOF
 Name=eth2
 
 [Network]
-Address=10.20.0.1/24
+Address=${PHOTON_ROUTER_WKLD_IP}/24
 EOF
 
 chmod 655 /etc/systemd/network/*
