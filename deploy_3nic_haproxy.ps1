@@ -3,25 +3,25 @@
 # Blog: https://www.virtuallyghetto.com/2020/11/automating-haproxy-vm-deployment-with-3-nic-configuration-using-powercli.html
 # Description: Deploy HAProxy VM w/3-NIC Configuration
 
-$HAProxyOVA = "/Volumes/Storage/Software/vmware-haproxy-v0.1.8.ova"
+$HAProxyOVA = "/Volumes/Storage/Software/vmware-haproxy-v0.2.0.ova"
 
 $Cluster = "Tanzu-Cluster"
 $VMHost = "Z840.homelab.local"
-$Datastore = "local-vmfs"
+$Datastore = "Z840-SATA-2TB-Datastore-1"
 
 $HAProxyDisplayName = "haproxy.homelab.local"
 $HAProxyHostname = "haproxy.homelab.local"
 $HAProxyDNS = "10.0.1.3"
 $HAProxyManagementNetwork = "Management"
-$HAProxyManagementIPAddress = "192.168.30.6/24" # Format is IP Address/CIDR Prefix
-$HAProxyManagementGateway = "192.168.30.1"
+$HAProxyManagementIPAddress = "10.0.1.111/24" # Format is IP Address/CIDR Prefix
+$HAProxyManagementGateway = "10.0.1.254"
 $HAProxyFrontendNetwork = "Frontend"
 $HAProxyFrontendIPAddress = "10.10.0.2/24" # Format is IP Address/CIDR Prefix
-$HAProxyFrontendGateway = "10.10.0.1"
+$HAProxyFrontendGateway = "10.0.10.254"
 $HAProxyWorkloadNetwork = "Workload"
-$HAProxyWorkloadIPAddress = "10.20.0.2/24" # Format is IP Address/CIDR Prefix
-$HAProxyWorkloadGateway = "10.20.0.1"
-$HAProxyLoadBalanceIPRange = "10.10.0.64/26" # Format is Network CIDR Notation
+$HAProxyWorkloadIPAddress = "10.0.20.2/24" # Format is IP Address/CIDR Prefix
+$HAProxyWorkloadGateway = "10.0.20.254"
+$HAProxyLoadBalanceIPRange = "10.0.10.64/26" # Format is Network CIDR Notation
 $HAProxyOSPassword = "VMware1!"
 $HAProxyPort = "5556"
 $HAProxyUsername = "wcp"
